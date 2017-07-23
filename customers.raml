@@ -1,0 +1,33 @@
+#%RAML 2.0
+title: customers API
+version: v1.0
+baseUri: http://remote-vending/api
+mediaType: application/json
+documentation:
+  - title: Introduction
+    content: |
+      API to manage the sales and replenishments of stock items and floats in our vending machines.
+/customers:
+  displayName: Create Customers
+  post:
+    description: |
+      Creation of the customer
+    body:
+      application/json:
+       example: |
+        {
+          "name" : "test",
+          "suburb" : "merrylands",
+          "street" : "atreet",
+          "postalcode": "2160"
+        }
+    responses:
+      200:
+        description: |
+          The Customer created successfully.
+            
+      400:
+        description: |
+          The payload was badly formed or does not comply to the schema provided.
+  
+  
