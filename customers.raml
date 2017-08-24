@@ -52,7 +52,7 @@ documentation:
           application/json:
             example: |
               {
-              "customerId" : "1"
+              "customerId" : "3"
               }  
             
       400:
@@ -75,7 +75,13 @@ documentation:
                 "suburb" : "merrylands",
                 "street" : "atreet",
                 "postalcode": "2160"
-              }              
+              },
+              {
+                "name" : "test1",
+                "suburb" : "granville",
+                "street" : "atreet",
+                "postalcode": "2164"
+              }   
   /{customerId}:
     get:
       description: Returns Customer for a given ID
