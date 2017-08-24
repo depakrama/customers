@@ -1,12 +1,10 @@
 #%RAML 2.0
 title: customers API
 version: v1.0
-baseUri: http://remote-vending/api
+baseUri: http://localhost/api
 mediaType: application/json
 documentation:
-  - title: Introduction
-    content: |
-      API to manage the sales and replenishments of stock items and floats in our vending machines.
+
 /customers:
   displayName: Create Customers
   post:
@@ -25,9 +23,78 @@ documentation:
       200:
         description: |
           The Customer created successfully.
+        body:
+          application/json:
+            example: |
+              {
+              "customerId" : "1"
+              }
             
       400:
         description: |
           The payload was badly formed or does not comply to the schema provided.
-  
+  put:
+    description: |
+      update of the customer
+    body:
+      application/json:
+       example: |
+        {
+          "customerId" : "3",
+          "name" : "test",
+          "suburb" : "merrylands"
+        }
+    responses:
+      201:
+        description: |
+          The Customer updated successfully.
+        body:
+          application/json:
+            example: |
+              {
+              "customerId" : "1"
+              }  
+            
+      400:
+        description: |
+          The payload was badly formed or does not comply to the schema provided.
+    
+  get:
+    queryParameters:
+      timeSinceLastUpdate:
+        description: "Date and time since last update"
+        example: 2017-07-04
+        required: false
+        type: date-only
+      responses:
+        200:
+          body:
+            example: |
+              {
+                "name" : "test",
+                "suburb" : "merrylands",
+                "street" : "atreet",
+                "postalcode": "2160"
+              }              
+  /{customerId}:
+    get:
+      description: Returns Customer for a given ID
+      responses:
+        200:
+          body:
+            example: |
+              {
+                "name" : "test",
+                "suburb" : "merrylands",
+                "street" : "atreet",
+                "postalcode": "2160"
+              }              
+    delete:
+      responses:
+        204:
+          description: |
+            the customer deleted successfully.
+        404:
+         description: |
+           The customer with the specified ID does not exist                   
   
